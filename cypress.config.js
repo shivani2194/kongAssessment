@@ -11,8 +11,8 @@ module.exports = defineConfig({
         "rootSuiteTitle": false,
         "testsuitesTitle": "End To End Test"
       },
-      "defaultCommandTimeout": 30000,
-      "taskTimeout": 300000,
+      "defaultCommandTimeout": 10000,
+      "taskTimeout": 100000,
       "pageLoadTimeout": 70000,
       "requestTimeout": 10000,
       "chromeWebSecurity": false,
