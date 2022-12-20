@@ -10,8 +10,9 @@ const selectors = {
     cancelButton:'button[data-testid="cancel-service-button"]',
     serviceName:'div[data-testid="packageName"]',
     createdServiceMessage: '.message',
-    duplicateNameError: 'div.k-alert-msg'
-    //'h1.truncate'
+    duplicateNameError: 'div.k-alert-msg',
+    //delete service
+    serviceAction:'[data-testid="service-package-actions"]'
 }
  
 export class serviceHub {
@@ -62,5 +63,9 @@ export class serviceHub {
 
       static  duplicateNameError() {
         return cy.get(selectors.duplicateNameError)
+      }
+
+      static  serviceAction() {
+        return cy.get(selectors.serviceAction)
       }
 }
