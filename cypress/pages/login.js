@@ -6,41 +6,39 @@ const selectors = {
     profileName: 'div[data-testid="k-dropdown-trigger"]',
     pageTitle: 'div.d-flex.flex-column.mb-5',
     pageHeader: '.login-header',
-    forgotPassword: 'a[data-testid="kong-auth-login-forgot-password-link"]'
- 
+    forgotPassword: 'a[data-testid="kong-auth-login-forgot-password-link"]',
 }
- 
+
 export class login {
- 
-   static emailField(){
+    static emailField() {
         return cy.get(selectors.email)
     }
 
-    static passwordField(){
+    static passwordField() {
         return cy.get(selectors.password)
     }
 
-    static loginButton(){
+    static loginButton() {
         return cy.get(selectors.loginButton)
     }
 
-    static loginError(){
+    static loginError() {
         return cy.get(selectors.loginError)
     }
 
-    static profileName(){
+    static profileName() {
         return cy.get(selectors.profileName)
     }
 
-    static pageTitle(){
+    static pageTitle() {
         return cy.get(selectors.pageTitle)
     }
 
-    static pageHeader(){
+    static pageHeader() {
         return cy.get(selectors.pageHeader)
     }
 
-    static forgetPassword(){
+    static forgetPassword() {
         return cy.get(selectors.forgotPassword)
     }
 }

@@ -3,28 +3,27 @@ const selectors = {
     deleteModalHeader: '.k-prompt-header-content',
     deleteModalMessage: '.k-prompt-body-content>:nth-child(1)',
     deleteButton: '.k-prompt-action-buttons > .danger',
-    deleteModalCancelButton: '.k-prompt-action-buttons>.outline'
+    deleteModalCancelButton: '.k-prompt-action-buttons>.outline',
 }
 
-export class deleteService{
-
-    static  deleteService() {
+export class deleteService {
+    static deleteService() {
         return cy.get(selectors.deleteService)
-      }
+    }
 
-      static  deleteModalHeader() {
+    static deleteModalHeader() {
         return cy.get(selectors.deleteModalHeader)
-      }
+    }
 
-      static  deleteModalMessage() {
+    static deleteModalMessage() {
         return cy.get(selectors.deleteModalMessage)
-      }
+    }
 
-      static  deletelButton() {
+    static deletelButton() {
         return cy.get(selectors.deleteButton)
-      }
+    }
 
-      static  deleteModalCancelButton() {
+    static deleteModalCancelButton() {
         return cy.get(selectors.deleteModalCancelButton)
-      }
+    }
 }

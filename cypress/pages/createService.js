@@ -6,56 +6,54 @@ const selectors = {
     pageSubHeading: 'div.form-container',
     displayNameField: '[data-testid="service-display-name"]',
     descriptionField: '[data-testid="service-description"]',
-    saveButton:'button[data-testid="save-service-button"]',
-    cancelButton:'button[data-testid="cancel-service-button"]',
+    saveButton: 'button[data-testid="save-service-button"]',
+    cancelButton: 'button[data-testid="cancel-service-button"]',
     createdServiceMessage: '.message',
-    duplicateNameError: 'div.k-alert-msg'
-  }
- 
+    duplicateNameError: 'div.k-alert-msg',
+}
+
 export class createService {
- 
-   static serviceHub(){
+    static serviceHub() {
         return cy.get(selectors.serviceHub)
     }
 
-    static serviceHubViaCreateService(){
+    static serviceHubViaCreateService() {
         return cy.get(selectors.serviceHubViaCreateService)
     }
 
-    static pageHeading(){
+    static pageHeading() {
         return cy.get(selectors.heading)
     }
 
-    static createServiceButton(){
+    static createServiceButton() {
         return cy.get(selectors.createNewServiceButton)
     }
 
-    static pageSubHeading(){
+    static pageSubHeading() {
         return cy.get(selectors.pageSubHeading)
     }
 
-    static displayNameField(){
+    static displayNameField() {
         return cy.get(selectors.displayNameField)
     }
 
-    static descriptionField(){
+    static descriptionField() {
         return cy.get(selectors.descriptionField)
     }
 
-    static saveButton(){
+    static saveButton() {
         return cy.get(selectors.saveButton)
     }
 
-    static cancelButton(){
+    static cancelButton() {
         return cy.get(selectors.cancelButton)
     }
 
-    static  verifyServiceCreatedMessage() {
+    static verifyServiceCreatedMessage() {
         return cy.get(selectors.createdServiceMessage)
-      }
-
-      static  duplicateNameError() {
-        return cy.get(selectors.duplicateNameError)
-      }
     }
-    
+
+    static duplicateNameError() {
+        return cy.get(selectors.duplicateNameError)
+    }
+}
