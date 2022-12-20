@@ -26,7 +26,7 @@ describe('Login', () => {
    serviceHub.pageSubHeading().should("contain", loginCreds.pageSubHeading)
    serviceHub.displayNameField().type(displayNameGenerator)
    serviceHub.descriptionField().type(`Description-${randomstring.generate(30)}`)
-   serviceHub.saveButton().click()
+   serviceHub.saveButton().click({force:true})
    //serviceHub.verifyServiceCreatedMessage().should("contain", "Created Service");
    
    cy.wait('@createService').then((res) => {
@@ -43,6 +43,25 @@ describe('Login', () => {
     serviceHub.pageHeading().should("contain", "Service Hub")
     serviceHub.createServiceButton().should("contain", "New service")
     serviceHub.createServiceButton().click()
-    serviceHub.descriptionField().type(`Description-${randomstring.generate(30)}`)
+    serviceHub.saveButton().should('be.disabled')
     })
+
+    it.only('Should not be able to create service: with existing Display name', () => {
+        let displayNameGenerator =`DisplayName-${randomstring.generate(3)}`
+       /* serviceHub.serviceHub().click();
+        serviceHub.pageHeading().should("contain", "Service Hub")
+        serviceHub.createServiceButton().should("contain", "New service")
+        serviceHub.createServiceButton().click()
+        serviceHub.displayNameField().type(displayNameGenerator)
+        serviceHub.descriptionField().type(`Description-${randomstring.generate(30)}`) */
+        cy.createService()
+        serviceHub.saveButton().click({force:true})
+        cy.wait('@createService').its("response.statusCode").should('eq', 201)
+        serviceHub.serviceHubViaCreateService().click({force:true});
+        serviceHub.createServiceButton().click()
+        serviceHub.displayNameField().type(displayNameGenerator)
+        serviceHub.saveButton().click({force:true})
+        cy.wait('@createService').its("response.statusCode").should('eq', 409)
+        serviceHub.duplicateNameError().should('contain',`Key (org_id, name)=(cdc11e8d-5bda-4821-a9ee-aeaa144b382e, ${displayNameGenerator}) already exists.`)
+        })
 }) 

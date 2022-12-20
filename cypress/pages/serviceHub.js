@@ -1,5 +1,6 @@
 const selectors = {
     serviceHub: 'li[data-testid="sidebar-item-service-hub"]',
+    serviceHubViaCreateService: '[href="/us/servicehub"]>.sidebar-item-display',
     heading: 'h1',
     createNewServiceButton: 'a[data-testid="new-service"]',
     pageSubHeading: 'div.form-container',
@@ -8,7 +9,8 @@ const selectors = {
     saveButton:'button[data-testid="save-service-button"]',
     cancelButton:'button[data-testid="cancel-service-button"]',
     serviceName:'div[data-testid="packageName"]',
-    createdServiceMessage: '.message'
+    createdServiceMessage: '.message',
+    duplicateNameError: 'div.k-alert-msg'
     //'h1.truncate'
 }
  
@@ -16,6 +18,10 @@ export class serviceHub {
  
    static serviceHub(){
         return cy.get(selectors.serviceHub)
+    }
+
+    static serviceHubViaCreateService(){
+        return cy.get(selectors.serviceHubViaCreateService)
     }
 
     static pageHeading(){
@@ -52,5 +58,9 @@ export class serviceHub {
 
    static  verifyServiceCreatedMessage() {
         return cy.get(selectors.createdServiceMessage)
+      }
+
+      static  duplicateNameError() {
+        return cy.get(selectors.duplicateNameError)
       }
 }
