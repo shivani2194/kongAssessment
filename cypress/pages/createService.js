@@ -4,18 +4,15 @@ const selectors = {
     heading: 'h1',
     createNewServiceButton: 'a[data-testid="new-service"]',
     pageSubHeading: 'div.form-container',
-    displayNameField: 'input[data-testid="service-display-name"]',
-    descriptionField: 'input[data-testid="service-description"]',
+    displayNameField: '[data-testid="service-display-name"]',
+    descriptionField: '[data-testid="service-description"]',
     saveButton:'button[data-testid="save-service-button"]',
     cancelButton:'button[data-testid="cancel-service-button"]',
-    serviceName:'div[data-testid="packageName"]',
     createdServiceMessage: '.message',
-    duplicateNameError: 'div.k-alert-msg',
-    //delete service
-    serviceAction:'[data-testid="service-package-actions"]'
-}
+    duplicateNameError: 'div.k-alert-msg'
+  }
  
-export class serviceHub {
+export class createService {
  
    static serviceHub(){
         return cy.get(selectors.serviceHub)
@@ -53,19 +50,12 @@ export class serviceHub {
         return cy.get(selectors.cancelButton)
     }
 
-    static serviceName(){
-        return cy.get(selectors.serviceName)
-    }
-
-   static  verifyServiceCreatedMessage() {
+    static  verifyServiceCreatedMessage() {
         return cy.get(selectors.createdServiceMessage)
       }
 
       static  duplicateNameError() {
         return cy.get(selectors.duplicateNameError)
       }
-
-      static  serviceAction() {
-        return cy.get(selectors.serviceAction)
-      }
-}
+    }
+    

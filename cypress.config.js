@@ -5,12 +5,14 @@ module.exports = defineConfig({
 
     baseUrl: 'https://cloud.konghq.com/',
     
-      "reporter": "mocha-junit-reporter",
+      "reporter": "mochawesome",
       "reporterOptions": {
-        "mochaFile": "./tests/e2e/reports/e2e-results-[hash].xml",
-        "rootSuiteTitle": false,
-        "testsuitesTitle": "End To End Test"
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
       },
+      "screenshotsFolder": "mochawesome-report/assets",
       "defaultCommandTimeout": 10000,
       "taskTimeout": 100000,
       "pageLoadTimeout": 70000,
