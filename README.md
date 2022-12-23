@@ -42,8 +42,8 @@
 Clone repo, change directory and install packages:
 
 ```sh
-gh repo clone shivani2194/kongKonnectAssesment
-cd kongKonnectAssesment
+gh repo clone shivani2194/kongAssessment
+cd kongAssessment
 npm install
 ```
 
@@ -64,8 +64,10 @@ npm run cy:run
 
 ## CI Configuration
 
-Github actions/CI is configured such that test will be triggered everytime that any thing is pushed to the repository.To trigger the job manually, visit a recent job and select re-run jobs. 
- Upon each test run, Mocha-awesome report would be uploaded to the Pages section. Go to:
+Github actions/CI is configured such that test will be triggered everytime that any thing is pushed to the repository.To trigger the job manually, visit a recent job and select re-run job.
+**Report integrated with CI**: Upon every test run, a report will be uploaded at the bottom of the summary section. Please download it in your local and view the index.html file to see the test report. 
+
+Mocha-awesome report would be uploaded to the Pages section as well. Go to:
  
 **Setting -> Pages on the left tab ( Please refer to the attcahed screenshot)**
  ![mochaReport](https://user-images.githubusercontent.com/19922261/209314754-420770ab-b332-445d-b80f-314e834db178.JPG)
