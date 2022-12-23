@@ -26,16 +26,13 @@ jobs:
           # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: npm run report:merge
-          
-      - run: npm run report:generate
-
+     
       - name: Report
         uses:  actions/upload-artifact@v3
         continue-on-error: true
         with:
           name: Report Upload
-          path: public/index.html
+          path: cypress/reports/html/index.html_*
       - name: Deploy report page
         
         uses: peaceiris/actions-gh-pages@v3
