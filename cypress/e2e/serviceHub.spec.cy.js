@@ -4,10 +4,12 @@ import { deleteService } from '../pages/deleteService'
 
 let loginCreds = Cypress.env('credentials')
 const randomstring = require('randomstring')
-let displayNameGenerator = null;
-let descriptionGenerator = null;
-let today = null;
-let date = null;
+let pageSubHeading =
+    'Create a service to manage and proxy an existing API or publish to a portal. Services contain one or more versions.'
+let displayNameGenerator = null
+let descriptionGenerator = null
+let today = null
+let date = null
 
 describe('Create Service', () => {
     beforeEach(() => {
@@ -30,16 +32,13 @@ describe('Create Service', () => {
         createService.createServiceButton().should('contain', 'New service')
         createService.createServiceButton().click()
         cy.url().should('contain', '/servicehub/create')
-        createService.pageHeading().should('contain', loginCreds.pageHeading)
-        createService
-            .pageSubHeading()
-            .should('contain', loginCreds.pageSubHeading)
+        createService.pageHeading().should('contain', 'Create a Service')
+        createService.pageSubHeading().should('contain', pageSubHeading)
         createService.displayNameField().type(displayNameGenerator)
         createService.descriptionField().type(descriptionGenerator)
-        createService.saveButton().click({ force: true })
+        createService.saveButton().click()
 
-        cy.wait('@createService').then((res) => {
-            let response = res
+        cy.wait('@createService').then((response) => {
             cy.url().should('contain', response.response.body.id)
         })
 
@@ -57,10 +56,10 @@ describe('Create Service', () => {
     it('Should not be able to create service: with existing Display name', () => {
         cy.createService(displayNameGenerator, descriptionGenerator)
         cy.wait('@createService').its('response.statusCode').should('eq', 201)
-        createService.serviceHubViaCreateService().click({ force: true })
+        createService.serviceHubViaCreateService().click()
         createService.createServiceButton().click()
         createService.displayNameField().type(displayNameGenerator)
-        createService.saveButton().click({ force: true })
+        createService.saveButton().click()
         cy.wait('@createService').its('response.statusCode').should('eq', 409)
         createService
             .duplicateNameError()
@@ -101,10 +100,9 @@ describe('Delete Service', () => {
             .should('contain', `Delete Service: ${displayNameGenerator}`)
         deleteService
             .deleteModalMessage()
-            .should('contain', loginCreds.deleteModalMessage)
+            .should('contain', 'Are you sure you want to delete this service?')
         deleteService.deletelButton().click()
         cy.wait('@deleteService').its('response.statusCode').should('eq', 200)
-        //assert against confirmation pop up
     })
 
     it('Should be able to cancel delete service', () => {
@@ -115,12 +113,12 @@ describe('Delete Service', () => {
             .should('contain', `Delete Service: ${displayNameGenerator}`)
         deleteService
             .deleteModalMessage()
-            .should('contain', loginCreds.deleteModalMessage)
+            .should('contain', 'Are you sure you want to delete this service?')
         deleteService.deleteModalCancelButton().click()
         cy.url().should('contain', '/overview')
     })
-  }) 
-  describe('Service page', () => {
+})
+describe('Service page', () => {
     beforeEach(() => {
         displayNameGenerator = `DisplayName-${randomstring.generate(3)}`
         descriptionGenerator = `Description-${randomstring.generate(30)}`
@@ -161,7 +159,7 @@ describe('Delete Service', () => {
     it('Should be able to create service Version', () => {
         servicePage.createVersion().click()
         cy.url().should('contain', '/versions/create')
-        servicePage.pageHeading().should('contain', loginCreds.createVersion)
+        servicePage.pageHeading().should('contain', 'Create a Version')
         servicePage
             .versionName()
             .type(`Version Name-${randomstring.generate(5)}`)
@@ -171,4 +169,3 @@ describe('Delete Service', () => {
         cy.wait('@serviceVersion').its('response.statusCode').should('eq', 201)
     })
 })
-

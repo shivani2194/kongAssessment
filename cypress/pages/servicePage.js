@@ -1,79 +1,77 @@
 const selectors = {
-    serviceAction:'[data-testid="service-package-actions"]',
+    serviceAction: '[data-testid="service-package-actions"]',
     heading: 'h1',
-    serviceName:'div[data-testid="packageName"]',
+    serviceName: 'div[data-testid="packageName"]',
     dateModified: '[data-testid="service-modified"]',
     dateCreated: '[data-testid="service-created"]',
-    descriptionNameField:'[data-testid="service-context-descriptions"]',
+    descriptionNameField: '[data-testid="service-context-descriptions"]',
     publishStatus: 'div[data-testid="publish-status"]',
     serviceKey: 'div[data-testid="copy-id"]',
-    label:'section[data-testid="labels-list"]',
+    label: 'section[data-testid="labels-list"]',
 
     //create Version
     createVersion: 'a[data-testid="new-service-version"]',
     versionName: '[name="version"]',
     runTimeGroup: '[data-testid="k-select-input"]',
     selectRunTimeGroup: 'button.selected',
-    createVersionButton: 'button[data-testid="create-service-version-button"]'
+    createVersionButton: 'button[data-testid="create-service-version-button"]',
 }
 
 export class servicePage {
-
-    static  serviceAction() {
+    static serviceAction() {
         return cy.get(selectors.serviceAction)
-      }
+    }
 
-    static pageHeading(){
+    static pageHeading() {
         return cy.get(selectors.heading)
     }
 
-    static serviceName(){
+    static serviceName() {
         return cy.get(selectors.serviceName)
     }
 
-    static  dateModified() {
+    static dateModified() {
         return cy.get(selectors.dateModified)
-      }
+    }
 
-      static  dateCreated() {
+    static dateCreated() {
         return cy.get(selectors.dateCreated)
-      }
+    }
 
-      static  descriptionNameField() {
+    static descriptionNameField() {
         return cy.get(selectors.descriptionNameField)
-      }
+    }
 
-      static  publishStatus() {
+    static publishStatus() {
         return cy.get(selectors.publishStatus)
-      }
+    }
 
-      static  serviceKey() {
+    static serviceKey() {
         return cy.get(selectors.serviceKey)
-      }
+    }
 
-      static label() {
+    static label() {
         return cy.get(selectors.label)
-      }
+    }
 
-      // Create version
-      static createVersion() {
+    // Create version
+    static createVersion() {
         return cy.get(selectors.createVersion)
-      }
+    }
 
-      static versionName() {
+    static versionName() {
         return cy.get(selectors.versionName).last()
-      }
+    }
 
-      static runTimeGroup() {
+    static runTimeGroup() {
         return cy.get(selectors.runTimeGroup).last()
-      }
+    }
 
-      static selectRunTimeGroup() {
+    static selectRunTimeGroup() {
         return cy.get(selectors.selectRunTimeGroup).last()
-      }
+    }
 
-      static createVersionButton() {
+    static createVersionButton() {
         return cy.get(selectors.createVersionButton).last()
-      }
-    
+    }
 }

@@ -12,16 +12,13 @@ describe('Login', () => {
     })
 
     it('Should be able to login with valid credentials', () => {
-        login.pageTitle().should('contain', loginCreds.loginTitle)
+        login.pageTitle().should('contain', 'Konnect')
         login.pageHeader().should('contain', 'Login')
         login.emailField().type(loginCreds.email)
         login.passwordField().type(loginCreds.password)
         login.loginButton().click()
         cy.wait('@successfullLogin').then((res) => {
-            cy.url().should(
-                'be.equal',
-                'https://cloud.konghq.com/us/runtime-manager'
-            )
+            cy.url().should('be.equal', 'https://cloud.konghq.com/us/overview')
         })
         login.profileName().should('contain', loginCreds.userName)
     })
@@ -31,15 +28,25 @@ describe('Login', () => {
         login.passwordField().type(loginCreds.password)
         login.loginButton().click()
         cy.wait('@invalidLogin').its('response.statusCode').should('eq', 401)
-        login.loginError().should('contain', loginCreds.loginError)
+        login
+            .loginError()
+            .should(
+                'contain',
+                'Incorrect username or password. Please try again.'
+            )
     })
 
-    it('Should be able to login with valid credentials', () => {
+    it('Should not be able to login with invalid Password', () => {
         login.emailField().type(loginCreds.email)
         login.passwordField().type('r@ndomInvalid')
         login.loginButton().click()
         cy.wait('@invalidLogin').its('response.statusCode').should('eq', 401)
-        login.loginError().should('contain', loginCreds.loginError)
+        login
+            .loginError()
+            .should(
+                'contain',
+                'Incorrect username or password. Please try again.'
+            )
     })
 
     it('Should not be able to login with blank credential fields', () => {
@@ -56,12 +63,10 @@ describe('Login', () => {
         login.loginButton().should('be.disabled')
     })
 
-    it.only('Should be able to click on forget password link', () => {
+    it('Should be able to click on forget password link', () => {
         login.emailField().type(loginCreds.email)
         login.loginButton().should('be.disabled')
         login.forgetPassword().click()
         cy.url().should('contain', '/forgot-password')
     })
 })
-
-//update name of logincreds
